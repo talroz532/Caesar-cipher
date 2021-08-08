@@ -49,5 +49,5 @@ void decrypted(char message_buff[256], int key) {
 	}
 	printf("Decrypted message: %s", message_buff);
 
-
 }
+
