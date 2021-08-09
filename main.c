@@ -37,13 +37,10 @@ int main(int argc, char* argv[])
 			if (scanf("%d", &key) != 1) {
 				printf("input error");
 				exit(1);
-
+			}
 				decrypted(message, key);
 				printf("decrypted: %s", message);
-			}
-
-
-
+			
 		}
 		else if (strcmp(argv[1], "encrypt") == 0) {
 
