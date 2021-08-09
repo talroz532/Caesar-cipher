@@ -6,7 +6,6 @@
 
 void timer(char time_buffer[30]);
 
-
 int main(int argc, char* argv[])
 {
 	char message[256];
@@ -20,10 +19,8 @@ int main(int argc, char* argv[])
 		printf("Directory created\n");
 	}
 
-
 	const char* file_dir = "C:\\encrypted\\test1.txt";
 	FILE* fptr;
-
 
 	if (argc == 2) {
 
@@ -41,6 +38,7 @@ int main(int argc, char* argv[])
 				decrypted(message, key);
 				printf("decrypted: %s", message);
 			
+
 		}
 		else if (strcmp(argv[1], "encrypt") == 0) {
 
@@ -73,8 +71,8 @@ int main(int argc, char* argv[])
 		else if (strcmp(argv[1], "admin") == 0) {
 			
 			char buffer[512];
-			char* timer_buffer;
-			char* decrypted_buffer;
+			char timer_buffer[30];
+			char decrypted_buffer[512];
 
 			fptr = fopen(file_dir, "r");
 
@@ -84,12 +82,10 @@ int main(int argc, char* argv[])
 			}
 
 			while (fgets(buffer, 512, fptr)) {
-				key = atoi(strtok(buffer, " "));
-				timer_buffer = strtok(NULL, " ");
-				decrypted_buffer = strtok(NULL, " ");
+
+				sscanf(buffer, "%d %s %[^\n]", &key, timer_buffer, decrypted_buffer);
 
 				decrypted(decrypted_buffer, key);
-
 				printf(" >> %s | key %d | decrypted: %s\n", timer_buffer, key, decrypted_buffer);
 			}
 
@@ -106,7 +102,6 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
-
 
 void timer(char time_buffer[30]) {
 	time_t timer;
